@@ -22,6 +22,10 @@ To prevent the model from learning the trivial rule that "higher income equals n
 ## 3. Data Processing & Feature Engineering (Completed)
 Since SNAP is awarded at the household level, but many barriers are individually experienced, we aggregated person-level demographics into household-level summary features using `SERIALNO` as the merge key.
 
+**Handling the `POVPIP` (Poverty Ratio) Quirk:**
+A critical step in our processing involved the `POVPIP` column. Even though poverty is calculated based on combined household income, the Census Bureau stores `POVPIP` in the **Person (`p`) dataset**, not the Housing dataset. However, every individual living in the same household is assigned the exact same `POVPIP` value. 
+* *Our Processing:* When aggregating the person data by `SERIALNO` (Household ID), we extracted the `POVPIP` for the household by simply taking the `.first()` record for each group. This efficiently bridged the poverty metric from the person level to our final household-level matrix.
+
 **Engineered Barrier Features:**
 * **Vulnerability Flags:** `HAS_ELDERLY` (60+), `HAS_DISABLED`
 * **Household Composition:** `NUM_CHILDREN`, `NUM_WORKING_ADULTS`, `NP` (Household size)
