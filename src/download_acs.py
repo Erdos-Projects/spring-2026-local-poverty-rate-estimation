@@ -4,6 +4,11 @@ from bs4 import BeautifulSoup
 import zipfile
 import io
 
+# --- DOCUMENTATION REFERENCE ---
+# 2023 ACS PUMS Data Dictionary and Technical Documentation:
+# https://www.census.gov/programs-surveys/acs/microdata/documentation.2023.html#list-tab-1370939201
+# -------------------------------
+
 # --- CONFIGURATION ---
 # 1. Choose your region (Capitalize them)
 TARGET_STATES = ["MD", "DC", "VA"] 
@@ -24,7 +29,7 @@ def download_acs_data():
     print(f"Saving data to: {output_dir}\n")
     print(f"Target Region: {TARGET_STATES}")
 
-    print(f"Fetching file list from Census Bureau...")
+    print("Fetching file list from Census Bureau...")
     try:
         response = requests.get(BASE_URL)
         response.raise_for_status()
