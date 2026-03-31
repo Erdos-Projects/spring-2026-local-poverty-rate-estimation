@@ -112,9 +112,17 @@ When evaluating the tuned LightGBM model on our fully unseen 15% test holdout, i
 
 By maintaining over 80% on both Precision and Recall on completely unseen data, the model proves highly effective at accurately flagging the most vulnerable non-participating households while keeping false alarms to a minimum.
 
-## 6. Key Takeaways & Actionable Recommendations
-Based on our feature correlations and predictive modeling, we recommend the following for policymakers and stakeholders:
+## 6. Key Takeaways & Data Limitations
 
-* **The "Asset" Association:** The data shows a strong correlation between gap households and protective financial factors (like homeownership and higher education).
-* **The Language Factor:** Speaking languages other than English is one of the strongest statistical predictors of falling into the gap, highlighting a clear intersection between language differences and program non-participation.
-* **Action Steps:** Prioritize expanding multilingual application support, bilingual caseworkers, and localized community partnerships to engage the most at-risk sub-populations.
+### Key Takeaways
+Our modeling confirms that the SNAP Gap is highly predictable using observable socioeconomic proxy data. As highlighted in our EDA, the model relies heavily on two main types of signals:
+* **Financial Safety Nets:** Households with protective assets (like homeownership or higher education) often fall into the gap. These households might be experiencing temporary income shocks rather than chronic poverty.
+* **Language Barriers:** Limited English proficiency is a strong structural predictor of non-participation, emphasizing the need for robust, multilingual outreach.
+
+*(Note: Our model is purely predictive and identifies strong correlations; it does not establish causal relationships for why a specific household didn't apply.)*
+
+### Data Limitations & Scope
+* **Eligibility Nuances & Local Rules:** Because we lacked granular, county-by-county administrative rules, we defined eligibility using the standard federal baseline (at or below 130% of the poverty line). 
+  * *The "Secretly Rich":* In reality, some of these low-income households may have high legacy savings or assets, disqualifying them mathematically or reducing their need to apply. 
+  * *Categorical Eligibility:* Conversely, populations like the elderly or disabled might legally qualify even if their gross income slightly exceeds 130%, which our strict cut-off does not capture.
+* **Group Quarters (GQs):** We intentionally excluded populations living in institutional, military, or group housing. The feature distributions for GQs are fundamentally different from standard households. Accurately predicting the SNAP Gap for these populations would require entirely separate feature engineering and sub-modeling, which was beyond the scope of this project phase.
