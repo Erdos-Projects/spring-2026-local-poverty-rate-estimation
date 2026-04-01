@@ -4,16 +4,21 @@ numpy
 openpyxl
 xlrd
 
-# Web Scraping
+# Data Visualization
+matplotlib
+seaborn
+
+# Web Scraping / Data Fetching
 requests
 beautifulsoup4
 
 # Machine Learning & Stats
 scikit-learn
+imbalanced-learn
 xgboost
+lightgbm
 statsmodels
 scipy
-xgboost
 
 # Notebooks
 jupyter
